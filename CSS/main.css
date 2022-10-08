@@ -1,0 +1,255 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: #5cbdb9;
+}
+
+.banner {
+  height: 100%;
+}
+
+.header {
+  height: 100%;
+  background-color: whitesmoke;
+}
+
+.container-fluid {
+  height: 100%;
+}
+
+.formContainer {
+  display: none;
+  transform: matrix(20px);
+  transition: all ease-in 5000ms;
+  z-index: 200;
+}
+.formContainer form {
+  background-color: #a28089;
+  width: 50%;
+  background-color: #5cbdb9;
+}
+.formContainer form button:hover {
+  background-color: #135963;
+  transition: all ease-in 1000ms;
+}
+.formContainer form button {
+  background-color: #51e2f5;
+  transition: all ease-in 1000ms;
+}
+.formContainer form .form-control {
+  border: none;
+  background-color: rgb(214, 209, 209);
+}
+.formContainer label {
+  text-transform: uppercase;
+}
+.formContainer span:hover, .formContainer span :focus {
+  color: red;
+  cursor: pointer;
+}
+
+.container .btn {
+  width: 70%;
+  height: 30px;
+}
+
+body {
+  font-size: 0.875rem;
+}
+
+.navbar {
+  background-color: #104d55;
+}
+
+.feather {
+  width: 16px;
+  height: 16px;
+  vertical-align: text-bottom;
+}
+
+/*
+ * Sidebar
+ */
+.sidebar {
+  background-color: #fbe3e8;
+  position: fixed;
+  top: 0;
+  right: 10;
+  bottom: 0;
+  z-index: 100; /* Behind the navbar */
+  padding: 48px 0 0; /* Height of navbar */
+  box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1);
+}
+.sidebar li .activePage {
+  box-shadow: inset 690px 0 0 0 #104d55;
+  color: whitesmoke;
+}
+.sidebar li a {
+  margin-bottom: 0px;
+  transition: color 0.3s ease-in-out;
+  text-decoration: none;
+}
+.sidebar li a:hover {
+  color: white;
+  opacity: 78%;
+  box-shadow: inset 690px 0 0 0 #104d55;
+}
+
+@media (max-width: 767.98px) {
+  .sidebar {
+    top: 5rem;
+  }
+  form {
+    width: 100%;
+    background-color: #5cbdb9;
+  }
+  form button:hover {
+    background-color: #51e2f5;
+    transition: all ease-in 1000ms;
+  }
+}
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: 0.5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+.sidebar .nav-link {
+  font-weight: 500;
+  color: #333;
+}
+
+.sidebar .nav-link .feather {
+  margin-left: 4px;
+  color: #727272;
+}
+
+.sidebar .nav-link.active {
+  color: #2470dc;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+  color: inherit;
+}
+
+.sidebar-heading {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+/*
+ * Navbar
+ */
+.navbar-brand {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-size: 1rem;
+  transform: translateX();
+}
+.navbar-brand:hover {
+  background-color: #104d55;
+}
+
+.navbar .navbar-toggler {
+  top: 0.25rem;
+  left: 1rem;
+}
+
+.navbar .form-control {
+  padding: 0.75rem 1rem;
+  border-width: 0;
+  border-radius: 0;
+}
+
+.form-control-dark {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.form-control-dark:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+}
+
+.close {
+  bottom: 84%;
+  left: 26%;
+}
+
+.navbar {
+  -webkit-animation: 2s SlideOnLoad;
+          animation: 2s SlideOnLoad;
+}
+@-webkit-keyframes SlideOnLoad {
+  0% {
+    transform: translateX(-100%);
+    opacity: -1;
+  }
+  50% {
+    transform: translateX(-50%);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes SlideOnLoad {
+  0% {
+    transform: translateX(-100%);
+    opacity: -1;
+  }
+  50% {
+    transform: translateX(-50%);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.contentDisplay {
+  -webkit-animation: 3s slideDownContent;
+          animation: 3s slideDownContent;
+}
+@-webkit-keyframes slideDownContent {
+  0% {
+    transform: translateY(-100%);
+    opacity: -1;
+  }
+  50% {
+    transform: translateY(-50%);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slideDownContent {
+  0% {
+    transform: translateY(-100%);
+    opacity: -1;
+  }
+  50% {
+    transform: translateY(-50%);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+input[type=checkbox] {
+  display: none;
+  top: 35%;
+  left: 20%;
+}/*# sourceMappingURL=main.css.map */
