@@ -103,7 +103,7 @@
                     <li class="nav-item">
                       <a class="nav-link active" aria-current="page" href="#">
                         <span data-feather="home"></span>
-                        <button class="rounded-5 p-2 ms-lg-2 btn btn-primary  text-light " id="newTask"><i class="fa fa-plus fw-lighter " aria-hidden="true" style="font-size: 15px;"> </i> New Product </button>
+                        <button class="rounded-5 p-2 ms-lg-2 btn btn-primary  text-light " id="newProduct"><i class="fa fa-plus fw-lighter " aria-hidden="true" style="font-size: 15px;"> </i> New Product </button>
                     </li>
                     <!-- <li class="nav-item">
                       <a class="nav-link" href="#">
@@ -163,7 +163,17 @@
                 <h3 class=""> PRODUCTS</h3>
                 <div class="btn-toolbar mb-2 mb-md-0">
                   <div class="btn-group me-2">
-                    <button type="button" class="btn btn-sm btn-outline-secondary selectbtn">Select</button>
+                    <div class="dropdown">
+                      <a class="btn btn-secondary selectbtn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        Select
+                      </a>
+                    
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li><a class="dropdown-item " href="#" >Delete</a></li>
+               
+                      </ul>
+                    </div>
+             
                 
                   </div>
                   <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
@@ -175,67 +185,65 @@
 <!--         
               <canvas class="my-4 w-100" id="myChart" width="900" height="80"></canvas> -->
         
-              <div class="container overflow-hidden mt-5 text-black contentDisplay">
-                <div class="row g-5  row-cols-lg-4 row-cols-md-2 row-cols-sm-2    border-4" id="displaytxt">
-                  
+              <div class="container overflow-hidden mt-5  contentDisplay ">
+                <div class="row g-5  row-cols-lg-2 row-cols-md-1 row-cols-sm-1 gy-md-1    border-4" id="displayProducts">
+               
                  
+                    <div class="col-sm-6 col-md-3">
+                      <div class="movie--isloading">
+                        <div class="loading-image"></div>
+                        <div class="loading-content">
+                          <div class="loading-text-container">
+                            <div class="loading-main-text"></div>
+                            <div class="loading-sub-text"></div>
+                          </div>
+                          <div class="loading-btn"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                      <div class="movie--isloading">
+                        <div class="loading-image"></div>
+                        <div class="loading-content">
+                          <div class="loading-text-container">
+                            <div class="loading-main-text"></div>
+                            <div class="loading-sub-text"></div>
+                          </div>
+                          <div class="loading-btn"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                      <div class="movie--isloading">
+                        <div class="loading-image"></div>
+                        <div class="loading-content">
+                          <div class="loading-text-container">
+                            <div class="loading-main-text"></div>
+                            <div class="loading-sub-text"></div>
+                          </div>
+                          <div class="loading-btn"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                      <div class="movie--isloading">
+                        <div class="loading-image"></div>
+                        <div class="loading-content">
+                          <div class="loading-text-container">
+                            <div class="loading-main-text"></div>
+                            <div class="loading-sub-text"></div>
+                          </div>
+                          <div class="loading-btn"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                
+                  
+                
 
                
 
-                <div class="col" >
-                  <input type="checkbox" class="position-absolute " id="">
-                    <div class="p-5  bg-light rounded">
-                        <img src="./img/colorMountain.webp" class="img-fluid" alt="">
-                   
-                    
-                    <h3> Name</h3>
-                    <p> desctription</p>
-            <div class="d-flex">
-                    <button class="editTask btn btn-outline-primary mb-2 text-light" index=${i}> <i class="fa fa-edit" aria-hidden="true"></i></button>
-                    
-                    <button type="button" class="deleteTask btn btn-outline-danger text-light"index=${i} ><i class="fa fa-trash " aria-hidden="true" ></i></button>
-                    
-                    </div>
-                    <p>date added</p>
-                    </div>
-                </div>
-
-                <div class="col" >
-                  <input type="checkbox" class="position-absolute " id="">
-                    <div class="p-5  bg-light rounded">
-                        <img src="./img/colorMountain.webp" class="img-fluid" alt="">
-                   
-                    
-                    <h3> Name</h3>
-                    <p> desctription</p>
-            <div class="d-flex">
-                    <button class="editTask btn btn-outline-primary mb-2 text-light" index=${i}> <i class="fa fa-edit" aria-hidden="true"></i></button>
-                    
-                    <button type="button" class="deleteTask btn btn-outline-danger text-light"index=${i} ><i class="fa fa-trash " aria-hidden="true" ></i></button>
-                    
-                    </div>
-                    <p>date added</p>
-                    </div>
-                </div>
-
-                <div class="col" >
-                  <input type="checkbox" class="position-absolute " id="">
-                    <div class="p-5  bg-light rounded">
-                        <img src="./img/colorMountain.webp" class="img-fluid" alt="">
-                   
-                    
-                    <h3> Name</h3>
-                    <p> desctription</p>
-            <div class="d-flex">
-                    <button class="editTask btn btn-outline-primary mb-2 text-light" index=${i}> <i class="fa fa-edit" aria-hidden="true"></i></button>
-                    
-                    <button type="button" class="deleteTask btn btn-outline-danger text-light"index=${i} ><i class="fa fa-trash " aria-hidden="true" ></i></button>
-                    
-                    </div>
-                    <p>date added</p>
-                    </div>
-                </div>
-                
 
                 
 
@@ -247,57 +255,65 @@
         </div>
         
 
-   <div class="formContainer m-auto container-fluid   bg-opacity-75 bg-dark h-100 fixed-top m-auto"  id="formContainer">
+   <div class="productFormContainer m-auto container-fluid   bg-opacity-75 bg-dark h-100 fixed-top m-auto"  id="formContainer">
  <br>
-      <form class="m-auto border-1 form rounded-2 border-3 bg-light p-5 mb-5 container container-sm mt-1 " id="form">
-        <h5>ADD NEW USER INFORMATION</h5>
-        <span class="fs-5 position-absolute close ">&times;</span>
+      <form action="http://159.65.21.42:9000/create/product" method="post" enctype="multipart/form-data" class="m-auto border-1  rounded-2 border-3 bg-light p-0 mt-5 m-auto mb-5 container pt-3 container-fluid-sm mt-1 " id="form">
+        <h5 class="text-center">ADD NEW USER PRODUCT</h5>
+        <span class="fs-5 position-absolute close "> <i class="fa fa-close" aria-hidden="true"></i></span>
      
-        <div class="d-lg-flex d-sm-block">
+        <div class="d-lg-flex d-sm-block row row-cols-2 m-auto ">
         
-        <div class=" m-auto p-2 col-lg-9  ">
+        <div class=" m-auto p-2 col border-end m-auto  ">
           
 
             
-           <div class="mb-3">
+           <div class="mb-3 col-6">
              <label for="" class="form-label">Name</label>
              <input type="text"
-               class="form-control" name="" id="NameTxt" aria-describedby="helpId" placeholder="">
+               class="form-control" name="name" id="NameTxt" aria-describedby="helpId" placeholder="" required>
             
            </div>
-           <div class="mb-3">
+           <div class="mb-3 col-6">
             <label for="" class="form-label">category</label>
             <input type="text"
-              class="form-control" name="" id="emailTxt" aria-describedby="helpId" placeholder="">
+              class="form-control" name="category" id="categoryTxt"  placeholder=""required>
            
           </div>
 
-          <div class="mb-3">
+          <div class="mb-3 col-2">
             <label for="" class="form-label">quantity</label>
-            <input type="text"
-              class="form-control" name="" id="phoneTxt" aria-describedby="helpId" placeholder="">
+            <input type="tel"
+              class="form-control" name="quantity" id="phoneTxt"  placeholder=""required>
            
           </div>
 
-          <div class="mb-3">
+          <div class="mb-3 col-2">
             <label for="" class="form-label">price</label>
-            <input type="text"
-              class="form-control" name="" id="passwordTxt" aria-describedby="helpId" placeholder="">
+            <input type="number"
+              class="form-control" name="price" id="priceTxt"  placeholder=""required>
            
           </div>
 
 
-          <div class="form-floating">
-            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-            <label for="floatingTextarea">description</label>
+         
           </div>
+<div class="col ">
+   <div class="mb-3">
+     <label for="" class="form-label">Add product image</label>
+     <input type="file" class="form-control p-5" name="image" id="imageTxt" placeholder=""required >
+     
+   </div>
+<div class="mb-3">
+  <label for="" class="form-label">product description</label>
+  <textarea class="form-control" name="description" id="" rows="3" id="descriptionTxt" placeholder="description" required></textarea>
+</div>
 
-          </div>
 
+</div>
           
           
           </div>
-      
+      <div class="container">
       <button type="submit" id="btnSave" class="btn mt-2 w-100 text-center shadow-sm">Add</button>
       </form>
       
@@ -322,7 +338,7 @@
         integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous">
         </script>
     <script src="./JS/jquery-3.6.1.min.js"></script>
-    <script src="./JS/main.js"></script>
+    <script src="./JS/product.js"></script>
 </body>
 
 </html>

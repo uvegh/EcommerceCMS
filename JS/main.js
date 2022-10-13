@@ -1,40 +1,3 @@
-let itemTxt =$("#itemTxt")
-descriptionTxt=$("#descriptionTxt") 
-validateItem=$("#validateItem") 
-validateDescription=$("#validateDescription") 
-validateDate =$("#validateDate")         
-dateTxt=$("#dateTxt")
-btnSave=$("#btnSave")
-formContainer=$("#formContainer")
-form=$("#form")
-newTask=$("#newTask")
-displaytxt=$("#displaytxt")
-toDoList=[];
- let setDate;
-let itemIndex;
-$(".selectbtn").click(function () { 
-  
-    $('input:checkbox').toggle() 
-    // $('input:checkbox').prop('checked', this.checked);  
-    
- });
- 
-
-
-
-newTask.click(function () { 
-    formContainer.show()
-    form.show(2000)
-            
-    
-});
-
-$("span").click(function () { 
-    formContainer.hide()
-    form.hide(1000)
-    
-});
-
 (function () {
     'use strict'
 
@@ -54,225 +17,368 @@ $("span").click(function () {
             }, false)
         })
 })();
-btnSave.click(function () {
-    if ( itemIndex!=null ) {
-        updateList()
-        
-    } else {
-        validateForm()
-        
-    }
-   
-    clearTxtFields()
-    
-})
+
+let nameTxt = $("#nameTxt")
+emailTxt = $("#emailTxt")
+phoneTxt = $("#phoneTxt")
+
+passwordTxt = $("#passwordTxt")
+validateName = $("#validateName")
+validateEmail = $("#validateEmail")
+validatePassword = $("#validatePassword")
+validatePhone = $("#validatePhone")
 
 
-displaytxt.on("click",".editTask", function () {
-   itemIndex= $(this).attr("index");
-    formContainer.show(1000)
-    form.show(1000)
-            btnSave.html("Update")
-    itemTxt.val( toDoList[itemIndex].item)
-    descriptionTxt.val([toDoList[itemIndex].description])
-    dateTxt.val([toDoList[itemIndex].date])
 
 
-    
+
+
+
+
+btnSave = $("#btnSave")
+formContainer = $("#formContainer")
+form = $("#form")
+newUser = $("#newUser")
+
+
+let setDate;
+let userIndex;
+let userArr = "";
+
+
+
+$(".selectbtn").click(function () {
+
+    $('input:checkbox').toggle()
+    // $('input:checkbox').prop('checked', this.checked);  
+
+});
+
+loadUsers();
+
+
+newUser.click(function () {
+    formContainer.show()
+    form.show(2000)
+
+
+});
+
+$("span").click(function () {
+    formContainer.hide()
+    form.hide(1000)
+
 });
 
 
-displaytxt.on("click",".deleteTask", function () {
-   
-     if (confirm("Are you sure want to delete this task?") ) {
+btnSave.click(function () {
+    if (userIndex != null) {
+        updateList()
+
+    } else {
+        validateForm()
+
+    }
+
+    clearTxtFields()
+
+})
+
+
+// 
+
+$("#displayUser").on("click", ".editUser", function () {
+    userIndex = $(this).attr("index");
+    formContainer.show(1000)
+    form.show(1000)
+    btnSave.html("Update")
+    nameTxt.val(userArr[userIndex].name)
+    emailTxt.val(userArr[userIndex].email)
+    phoneTxt.val(userArr[userIndex].phone)
+});
+
+
+$("#displayUser").on("click", ".deleteUser", function () {
+
+    if (confirm("Are you sure want to delete this User?")) {
         let deleteIndex = $(this).attr("index")
-        toDoList.splice(deleteIndex,1)
-        
-      console.log(deleteIndex);
-      localStorage.setItem("toDoTask",JSON.stringify(toDoList))
-          loadList()
-     }
-  
- });
+        let UserId = userArr[deleteIndex]._id
+
+        $.ajax({
+            type: "delete",
+            url: "http://159.65.21.42:9000/user/" + UserId,
+            success: function (res) {
+                console.log(res);
+                if (res["success"]) {
+                    alert(`${res["success"]} `)
+                    console.log(res.success);
+                    loadUsers()
+                }
+                else{
+                    alert("failed to delete user")
+                }
+
+            },
+            error: function (err) {
+                console.log(err);
+                alert(err.statusTxt)
+            }
+
+
+        })
+    }
+});
+
+
 
 function validateForm() {
-   if (itemTxt.val()==""||itemTxt.val()==null ) {
-    validateItem.html("emptyfield")
-    
-      }
+    if (nameTxt.val() == "" || nameTxt.val() == null) {
+        validateName.html("emptyfield")
+
+    }
     else {
-        validateItem.html("");
-        console.log(itemTxt.val());
-   } 
+        validateName.html("");
+        console.log(nameTxt.val());
+    }
 
-   if (descriptionTxt.val()==""||descriptionTxt.val()==null) {
-    validateDescription.html("emptyfield")
-    
-      }
+    if (emailTxt.val() == "" || emailTxt.val() == null) {
+        validateEmail.html("emptyfield")
+
+    }
     else {
-        validateDescription.html("");
-        console.log(descriptionTxt.val());
-   } 
+        validateEmail.html("");
+        console.log(emailTxt.val());
+    }
 
 
-   if (descriptionTxt.val()!=""&& itemTxt.val()!="") {
-    
-addItem()
-formContainer.hide()
-   }
-//    if (dateTxt.val()==""||dateTxt.val()==null) {
-//     validateDate.html("emptyfield")
-    
-//       }
-//     else {
-//         validateDate.html("");
-//         console.log(dateTxt.val());
-//    } 
 
-    
+    if (phoneTxt.val() == "" || phoneTxt.val() == null) {
+        validatePhone.html("emptyfield")
+
+    }
+    else {
+        validatePhone.html("");
+        console.log(phoneTxt.val());
+    }
+
+
+    if (passwordTxt.val() == "" || passwordTxt.val() == null) {
+        validatePassword.html("emptyfield")
+
+    }
+    else {
+        validatePassword.html("");
+        console.log(passwordTxt.val());
+    }
+
+
+    if (emailTxt.val() != "" && nameTxt.val() != "" && phoneTxt.val() &&
+        passwordTxt.val() != "") {
+
+        addUser()
+        console.log(emailTxt.val(), nameTxt.val(), phoneTxt.val());
+        formContainer.hide()
+    }
+    //    if (dateTxt.val()==""||dateTxt.val()==null) {
+    //     validateDate.html("emptyfield")
+
+    //       }
+    //     else {
+    //         validateDate.html("");
+    //         console.log(dateTxt.val());
+    //    } 
+
+
 }
 
 
-function addItem() {
-setDate=` ${new Date( dateTxt.val() ).getDate()}| ${new Date( dateTxt.val() ).getFullYear()}`
-    let toDoItem={
-        "item":itemTxt.val(),
-"description":descriptionTxt.val(),
-"date":setDate
+function addUser() {
+    let productObj = {
+
+        "name": nameTxt.val(),
+        "email": emailTxt.val(),
+
+        "phone": phoneTxt.val(),
+        "password": passwordTxt.val(),
 
 
     }
-    toDoList.push(toDoItem)
-console.log(toDoList)
-$("#tasksNo").html(toDoList.length)
 
-localStorage.setItem("toDoTask",JSON.stringify(toDoList))
-loadList()
+    $.ajax({
+        type: "post",
+        url: "http://159.65.21.42:9000/register ",
+        data: productObj,
+
+        success: function (res) {
+            if (res["error"]) {
+                alert(res["error"])
+                console.log(res["error"]);
+                window.location.href = "404.html"
+            }
+            else {
+
+
+                alert(`${res["name"]} was added successfully`)
+            }
+            loadUsers()
+
+        },
+
+        error: function (err) {
+            console.log(err)
+            window.location.href = "404.html"
+        }
+    });
+
 }
 
 
 
-function loadList() {
+function loadUsers() {
 
-    let getStorage =localStorage.getItem("toDoTask")
-    if (getStorage!=null) {
-        toDoList= JSON.parse(getStorage)
-    }
-    
-   let itemsShow=``
-    for (let i = 0; i < toDoList.length; i++) {
+    $.ajax({
+        type: "get",
+        url: "http://159.65.21.42:9000/users",
+        data: "res",
 
-        if ( dateTxt.val()!="") {
-            itemsShow+=`
-            <div class="col" >
-            <div class="p-5 border bg-light rounded-5">
-            <p>DUE ${ toDoList[i].date} </p>
-            
-            <h3>${toDoList[i].item} </h3>
-            <p> ${toDoList[i].description} </p>
-    
-            <button class="editTask btn btn-outline-primary mb-2 text-light" index=${i}> <i class="fa fa-edit" aria-hidden="true"></i></button>
-            
-            <button type="button" class="deleteTask btn btn-outline-danger text-light"index=${i} ><i class="fa fa-trash " aria-hidden="true" ></i></button>
-            </div>
-            </div>
-            
-            
-            
-            `
-            $("#displaytxt").html(itemsShow);
-    
-        }
-         else {
-            itemsShow+=`
-            <div class="col" >
-            <div class="p-5 border bg-light rounded-5">
-          
-            
-            <h3>${toDoList[i].item} </h3>
-            <p> ${toDoList[i].description} </p>
-    
-            <button class="editTask btn btn-outline-primary mb-2 text-light" index=${i}> <i class="fa fa-edit" aria-hidden="true"></i></button>
-            
-            <button type="button" class="deleteTask btn btn-outline-danger text-light"index=${i} ><i class="fa fa-trash " aria-hidden="true" ></i></button>
-            </div>
-            </div>
-            
-            
-            
-            `
-            $("#displaytxt").html(itemsShow);
-            
+        success: function (res) {
+            if (res.error) {
+                console.log(error);
+
+            } else {
+                console.log(res);
+                userArr = res;
+                res = res.reverse()
+                let usersShow = ``
+                for (let i = 0; i < userArr.length; i++) {
+
+
+                    usersShow += `
+                <tr>
+                     
+                <th scope="row"><input type="checkbox" name="" id=""> ${i + 1}</th>
+                
+                <td>${userArr[i].name}</td>
+                <td>${userArr[i].email}</td>
+                <td>${userArr[i].phone}</td>
+                <td><button class="btn btn-primary btn-sm mb-2 editUser"index= ${i}>Edit</button> <button class="btn btn-danger deleteUser"index= ${i}> Delete</button></td>
+              </tr>
+                
+                
+                
+                `
+                    $("#displayUser").html(usersShow);
+
+                }
+
+
+
+
+
+            }
         }
 
-   
 
-    }
+    })
+
+
 }
 
 
 function updateList() {
-    let toDoItem={
-        "item":itemTxt.val(),
-"description":descriptionTxt.val(),
-"date":setDate
+    
+    let productObj = {
+
+        "name": nameTxt.val(),
+        "email": emailTxt.val(),
+
+        "phone": phoneTxt.val(),
+        "password": passwordTxt.val(),
 
 
     }
-    toDoList[itemIndex]= toDoItem;
-    localStorage.setItem("toDoTask",JSON.stringify(toDoList))
+    // userArr[userIndex] = userArr;
+
+    $.ajax({
+        type:"put",
+url:"http://159.65.21.42:9000/user/"+ userArr[userIndex]._id,
+data:productObj,
+success:function (res) {
+    if (res.error) {
+     
+       
+        alert(res.error)
+        console.log(res.error);
+        
+    }
+    else{
+        loadUsers()
+        alert(`${res["name"]} was updated successfully`)
+       
+        
+
+    }
+}
+
+    })
+
+  
     formContainer.hide()
     form.hide()
     btnSave.html("Save")
-    index=null
-    loadList()
+    index = null
+    clearTxtFields()
+
+    
 }
 
 function clearTxtFields() {
-   
-    itemTxt.val("")
-    descriptionTxt.val("")
-    dateTxt.val("")
-    
- 
- 
- }
+
+    nameTxt.val("")
+    emailTxt.val("")
+    phoneTxt.val()
+    passwordTxt.val()
+    // dateTxt.val("")
 
 
 
-const ctx = document.getElementById('myChart').getContext('2d');
-const myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
+}
+
+
+
+// const ctx = document.getElementById('myChart').getContext('2d');
+// const myChart = new Chart(ctx, {
+//     type: 'bar',
+//     data: {
+//         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+//         datasets: [{
+//             label: '# of Votes',
+//             data: [12, 19, 3, 5, 2, 3],
+//             backgroundColor: [
+//                 'rgba(255, 99, 132, 0.2)',
+//                 'rgba(54, 162, 235, 0.2)',
+//                 'rgba(255, 206, 86, 0.2)',
+//                 'rgba(75, 192, 192, 0.2)',
+//                 'rgba(153, 102, 255, 0.2)',
+//                 'rgba(255, 159, 64, 0.2)'
+//             ],
+//             borderColor: [
+//                 'rgba(255, 99, 132, 1)',
+//                 'rgba(54, 162, 235, 1)',
+//                 'rgba(255, 206, 86, 1)',
+//                 'rgba(75, 192, 192, 1)',
+//                 'rgba(153, 102, 255, 1)',
+//                 'rgba(255, 159, 64, 1)'
+//             ],
+//             borderWidth: 1
+//         }]
+//     },
+//     options: {
+//         scales: {
+//             y: {
+//                 beginAtZero: true
+//             }
+//         }
+//     }
+// });
 
