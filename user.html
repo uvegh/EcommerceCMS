@@ -364,7 +364,7 @@
 
    <div class="formContainer m-auto container-fluid   bg-opacity-75 bg-dark h-100 fixed-top m-auto"  id="formContainer">
  <br>
-      <form class="m-auto border-1 form rounded-2 border-3 bg-light p-5 fixed-top container container-sm mt-5 " id="form">
+      <form class="m-auto border-1 form col-lg-6 col-sm-10 rounded-2 border-3 bg-light p-5 fixed-top container container-sm mt-5 " id="form">
         <h5>ADD NEW USER INFORMATION</h5>
         <span class="fs-5 position-absolute close ">&times;</span>
      
@@ -389,15 +389,15 @@
 
           <div class="mb-3">
             <label for="" class="form-label">phone</label>
-            <input type="text"
-              class="form-control" name="" id="phoneTxt"  aria-describedby="helpId" placeholder=""required>
+            <input type="phone"
+              class="form-control" name="" id="phoneTxt"  aria-describedby="helpId" onkeydown="if(this.length.val==11) return false" placeholder="" maxlength="11"required>
               <p id="validatePhone"></p>
           </div>
 
           <div class="mb-3">
             <label for="" class="form-label">password</label>
-            <input type="text"
-              class="form-control" name="" id="passwordTxt" aria-describedby="helpId" placeholder=""required>
+            <input type="password"
+              class="form-control" name=""  id="passwordTxt" aria-describedby="helpId" placeholder=""required>
               <p id="validatePassword"></p>
           </div>
 

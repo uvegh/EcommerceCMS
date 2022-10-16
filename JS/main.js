@@ -268,7 +268,7 @@ function loadUsers() {
                 
                 `
                     $("#displayUser").html(usersShow);
-
+                    $("#usersNo").html(userArr.length); 
                 }
 
 

@@ -274,7 +274,8 @@ btnSave.click(function () {
 
                 `
                     $("#displayProducts").html(ProductsShow);
-
+                    $("#productsNo").html(productArr.length);
+                    
                 }
                 
                 

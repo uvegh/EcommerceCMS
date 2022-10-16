@@ -23,7 +23,7 @@
 z-index: 200;
 
 form{ background-color: #a28089;
-  width: 50%; background-color: #5cbdb9;
+  background-color: #5cbdb9;
     button:hover{background-color: #135963; transition: all ease-in 1000ms;}
     button{background-color: #51e2f5; transition: all ease-in 1000ms;}
 .form-control{border: none; background-color: rgb(214, 209, 209)}
@@ -52,7 +52,7 @@ form{ background-color: #a28089;
 }
 label{text-transform: uppercase;}
 span{
-top:10%; left: 6%;
+top:10%; left: 10%;
 &:hover,:focus,i{
   color: red;
   cursor: pointer;
