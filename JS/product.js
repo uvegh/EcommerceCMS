@@ -18,17 +18,17 @@
         })
 })();
 
-let newProduct =$("#newProduct")
-btnSave = $("#btnSave")
-formContainer = $("#formContainer")
-form = $("#form")
+let newProduct =$("#newProduct"),
+btnSave = $("#btnSave"),
+formContainer = $("#formContainer"),
+form = $("#form"),
 
-nameTxt=$("#nameTxt")
-categoryTxt=$("#categoryTxt")
-quantityTxt=$("#quantityTxt")
-priceTxt=$("#priceTxt")
-imageTxt=$("#imageTxt")
-descriptionTxt=$("#descriptionTxt")
+nameTxt=$("#nameTxt"),
+categoryTxt=$("#categoryTxt"),
+quantityTxt=$("#quantityTxt"),
+priceTxt=$("#priceTxt"),
+imageTxt=$("#imageTxt"),
+descriptionTxt=$("#descriptionTxt");
 let productIndex
 
  loadProducts()
@@ -71,8 +71,13 @@ $("span").click(function () {
     priceTxt.val(productArr[productIndex].price)
     quantityTxt.val(productArr[productIndex].quantity)
     descriptionTxt.val(productArr[productIndex].description)
+    imageTxt.val(productArr[productIndex].image);
 
-
+console.log(nameTxt.val(),
+    categoryTxt.val(),
+    priceTxt.val(),
+      quantityTxt.val(),
+      descriptionTxt.val());
     
 
 
@@ -174,8 +179,10 @@ btnSave.click(function () {
     imageTxt.val() != "" && descriptionTxt.val()!= ""&& priceTxt.val()!= "") {
 
         addProduct()
+      
         console.log(categoryTxt.val() , nameTxt.val(), quantityTxt.val(),
         imageTxt.val(), descriptionTxt.val(),priceTxt.val());
+        clearTxtFields()
         formContainer.hide()
     }
     //    if (dateTxt.val()==""||dateTxt.val()==null) {
@@ -248,6 +255,8 @@ btnSave.click(function () {
                 res = res.reverse()
                 let ProductsShow = ``
                 for (let i = 0; i < productArr.length; i++) {
+if (productArr[i].category=="vincent") {
+    
 
 
                     ProductsShow += `
@@ -255,10 +264,11 @@ btnSave.click(function () {
                   <div class="card">
                     <div class="card-body">
                     <input type="checkbox" name="" id="" index=${i}> 
-                      <img src="./${productArr.image}" class="card-img" alt="">
+                      <img src="http://159.65.21.42:9000${productArr[i].image}" class="card-img" alt="">
 
-                      <p class=" mt-3 " style="color: rgb(43, 41, 41); text-transform: capitalize;"> ${productArr[i].category}</p>
+                 
                       <h5 class="card-title text-black">${productArr[i].name}</h5>
+                      <p class=" mt-3 " style="color: rgb(43, 41, 41); text-transform: capitalize;"> ${productArr[i].category}</p>
                       <p class="card-text" style="color: rgb(141, 137, 137);"   >${productArr[i].description}</p>
                     </div>
                     <div class="d-flex container mt-3 mb-3 ">
@@ -277,7 +287,7 @@ btnSave.click(function () {
                     $("#productsNo").html(productArr.length);
                     
                 }
-                
+            }
                 
              
 
@@ -295,24 +305,20 @@ btnSave.click(function () {
 
 
 function updateProduct() {
-    
-    let productObj = {
-       
-        
-                
-        "name":  nameTxt.val(),
-        "category": categoryTxt.val(),
-        "description": descriptionTxt.val(),
-        "price": priceTxt.val(),
-        "quantity": quantityTxt.val(),
+    let id=productArr[productIndex]._id
 
+let productObj={
+"name":$(input[name="name"].val()),
+"category":$(input[name="category"].val()),
+"quantity":$(input[name="quantity"].val()),
+"description":$(input[name="description"].val()),
+"price":$(input[name="price"].val()),
+"price":$(input[name="image"].val()),
 
-    }
-    
-
+}
     $.ajax({
-        type:"put", 
-url:"http://159.65.21.42:9000/update/product/"+ productArr[productIndex]._id,
+        type:"put",
+url:"http://159.65.21.42:9000/update/product/"+id,
 data:productObj,
 success:function (res) {
     if (res.error) {
@@ -337,6 +343,34 @@ success:function (res) {
     formContainer.hide()
     form.hide()
     btnSave.html("Save")
+    productIndex = null
+    loadProducts()
+    clearTxtFields()
+
+    
+}
+
+
+function updateList() {
+    
+    let productObj = {
+
+        "name": nameTxt.val(),
+        "email": emailTxt.val(),
+
+        "phone": phoneTxt.val(),
+        "password": passwordTxt.val(),
+
+
+    }
+    // userArr[userIndex] = userArr;
+
+  
+
+  
+    formContainer.hide()
+    form.hide()
+    btnSave.html("Save")
     index = null
     clearTxtFields()
 
@@ -344,7 +378,7 @@ success:function (res) {
 }
 function clearTxtFields() {
     
-          
+          imageTxt.val("")
     nameTxt.val("")
     categoryTxt.val("")
     descriptionTxt.val("")
