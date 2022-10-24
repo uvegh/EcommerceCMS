@@ -264,7 +264,7 @@ if (productArr[i].category=="vincent") {
                   <div class="card">
                     <div class="card-body">
                     <input type="checkbox" name="" id="" index=${i}> 
-                      <img src="http://159.65.21.42:9000${productArr[i].image}" class="card-img" alt="">
+                      <img src="http://159.65.21.42:9000${productArr[i].image}" class="card-img" alt="" height="250">
 
                  
                       <h5 class="card-title text-black">${productArr[i].name}</h5>
