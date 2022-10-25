@@ -134,45 +134,7 @@ btnSave.click(function () {
 
 
  function validateForm() {
-    // if (nameTxt.val() == "" || nameTxt.val() == null) {
-    //     validateName.html("emptyfield")
-
-    // }
-    // else {
-    //     validateName.html("");
-    //     console.log(nameTxt.val());
-    // }
-
-    // if (categoryTxt.val() == "" || categoryTxt.val() == null) {
-    //     validateEmail.html("emptyfield")
-
-    // }
-    // else {
-    //     categoryTxt.html("");
-    //     console.log(categoryTxt.val());
-    // }
-
-
-
-
-    // if (phoneTxt.val() == "" || phoneTxt.val() == null) {
-    //     validatePhone.html("emptyfield")
-
-    // }
-    // else {
-    //     validatePhone.html("");
-    //     console.log(phoneTxt.val());
-    // }
-
-
-    // if (passwordTxt.val() == "" || passwordTxt.val() == null) {
-    //     validatePassword.html("emptyfield")
-
-    // }
-    // else {
-    //     validatePassword.html("");
-    //     console.log(passwordTxt.val());
-    // }
+    
 
 
     if (categoryTxt.val() != "" && nameTxt.val() != "" && quantityTxt.val() &&
